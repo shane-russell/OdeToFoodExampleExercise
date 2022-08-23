@@ -56,7 +56,6 @@ namespace OdeToFood.Web
                 // User settings.
                 options.User.RequireUniqueEmail = false;
             });
-            TokenSettings tokenSettings2 = null;
             services.AddAuthentication()
                 .AddJwtBearer(options =>
                 {
@@ -64,7 +63,6 @@ namespace OdeToFood.Web
                     
 
                     Configuration.Bind("Token", tokenSettings);
-                    tokenSettings2 = tokenSettings;
                     options.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidIssuer = tokenSettings.Issuer,

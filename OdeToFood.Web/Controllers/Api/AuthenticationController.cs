@@ -110,6 +110,8 @@ namespace OdeToFood.Web.Controllers.Api
             var keyBytes = Encoding.UTF8.GetBytes(_tokenSettings.Value.Key);
             var symmetricSecurityKey = new SymmetricSecurityKey(keyBytes);
             var signingCredentials = new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.HmacSha256);
+            Console.WriteLine("Hello #########################################################################################################################");
+            Console.WriteLine("It's here: " + _tokenSettings.Value.Key);
 
             var jwtSecurityToken = new JwtSecurityToken(
                 issuer: _tokenSettings.Value.Issuer,
