@@ -56,12 +56,15 @@ namespace OdeToFood.Web
                 // User settings.
                 options.User.RequireUniqueEmail = false;
             });
-
+            TokenSettings tokenSettings2 = null;
             services.AddAuthentication()
                 .AddJwtBearer(options =>
                 {
                     var tokenSettings = new TokenSettings();
+                    
+
                     Configuration.Bind("Token", tokenSettings);
+                    tokenSettings2 = tokenSettings;
                     options.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidIssuer = tokenSettings.Issuer,
@@ -89,12 +92,15 @@ namespace OdeToFood.Web
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            // forces app to use the HTTPS protocol
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();
 
+            //Authenticate the user
             app.UseAuthentication();
+            //Authorise data access based on authenticated user role
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

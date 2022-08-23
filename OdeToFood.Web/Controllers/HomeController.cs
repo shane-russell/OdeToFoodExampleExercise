@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using OdeToFood.AppLogic;
 using OdeToFood.Domain;
+using Microsoft.AspNetCore.Authorization;
 
 namespace OdeToFood.Web.Controllers
 {
@@ -43,13 +44,16 @@ namespace OdeToFood.Web.Controllers
 
         // GET: 
         [HttpGet("Home/AddReview/{restaurantId}")]
+        [Authorize()]
         public IActionResult AddReview(int restaurantId)
         {
             return View(new EditReviewViewModel { RestaurantId = restaurantId });
         }
 
         [HttpPost("Home/AddReview/{restaurantId}")]
+        //Prevents Cross-site Scripting
         [ValidateAntiForgeryToken]
+        [AllowAnonymous]
         public async Task<IActionResult> AddReview(int restaurantId, EditReviewViewModel model)
         {
             if (model.RestaurantId != restaurantId)
