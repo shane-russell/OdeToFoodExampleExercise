@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace OdeToFood.Domain
 {
@@ -12,5 +13,7 @@ namespace OdeToFood.Domain
         public string City { get; set; }
 
         public string Country { get; set; }
+
+        public List<Review> Reviews { get; set; }
     }
 }

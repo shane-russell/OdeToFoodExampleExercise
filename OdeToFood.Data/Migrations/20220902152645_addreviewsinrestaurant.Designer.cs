@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OdeToFood.Data;
 
 namespace OdeToFood.Data.Migrations
 {
     [DbContext(typeof(OdeToFoodContext))]
-    partial class OdeToFoodContextModelSnapshot : ModelSnapshot
+    [Migration("20220902152645_addreviewsinrestaurant")]
+    partial class addreviewsinrestaurant
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

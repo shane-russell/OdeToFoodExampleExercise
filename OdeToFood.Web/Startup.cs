@@ -32,8 +32,13 @@ namespace OdeToFood.Web
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = false)
-                .AddEntityFrameworkStores<OdeToFoodContext>();
+            services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = false).AddEntityFrameworkStores<OdeToFoodContext>();
+
+            //services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
+            //.AddRoles<IdentityRole>() //Line that can help you
+            //.AddEntityFrameworkStores<OdeToFoodContext>();
+
+            // ###################################################################################################
 
             services.AddControllersWithViews();
             services.AddRazorPages();
@@ -60,7 +65,7 @@ namespace OdeToFood.Web
                 .AddJwtBearer(options =>
                 {
                     var tokenSettings = new TokenSettings();
-                    
+
 
                     Configuration.Bind("Token", tokenSettings);
                     options.TokenValidationParameters = new TokenValidationParameters
